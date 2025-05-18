@@ -1,0 +1,61 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource/onest";
+import "@fontsource/ubuntu";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alberto Aracil Millan - Portafolio</title>
+  </head><body>
+    <div class="w-full">
+      <div
+        class="absolute inset-0 -z-10 h-full w-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      >
+      </div>
+	  <div class="max-w-screen-xl mx-auto">
+		<Header />
+	  </div>
+	  <main>
+		<slot />
+	  </main>
+	  <div class="max-w-screen-xl mx-auto">
+		<Footer />
+	  </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+  html {
+    font-family: "Onest", "system-ui", sans-serif;
+    color: #fff;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen;
+    background-color: #0a0a0a;
+  }
+
+  body > div {
+    @apply w-full;
+  }
+
+  .gradient-bg {
+    @apply absolute inset-0 -z-10;
+  }
+
+  @media (max-width: 768px) {
+    .gradient-bg {
+      background: radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%);
+    }
+  }
+</style>

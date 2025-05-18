@@ -1,0 +1,33 @@
+---
+import ExperienciaItem from "./ExperienciaItem.astro"
+
+const EXPERIENCIA = [
+    {
+        fecha: "2025 - Presente",
+        titulo: "Curso de IA en la Universidad Oberta de Catalunya",
+        centro: "Universidad Oberta de Catalunya",
+    },
+    {
+        fecha: "2022 - 2025",
+        titulo: "Grado Superior de Desarrollo de Aplicaciones Multiplataforma",
+        centro: "Florida Universitaria",
+    },
+    {
+        fecha: "2020 - 2022",
+        titulo: "Grado medio de Técnico de Sistemas Microinformáticos",
+        centro: "Florida Universitaria",
+    },
+]
+---
+
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+     {
+        EXPERIENCIA.map(experiencia =>(
+            <li class="mb-10 ms-4">
+                <ExperienciaItem {...experiencia}/>
+            </li>
+        ))
+     }                 
+</ol>
+

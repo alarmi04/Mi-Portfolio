@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+const projects = await getCollection("projects");
+import Experiencia from "../components/Experiencia.astro";
+import Briefcase from "../../public/icons/Briefcase.astro";
+import LinkeInLogo from "../../public/icons/LinkeInLogo.astro";
+import GitHubLogo from "../../public/icons/GitHubLogo.astro";
+import ReactLogo from "../../public/icons/ReactLogo.astro";
+import MongoDBLogo from "../../public/icons/MongoDBLogo.astro";
+import JavaLogo from "../../public/icons/JavaLogo.astro";
+import SpringLogo from "../../public/icons/SpringLogo.astro";
+import GitLogo from "../../public/icons/GitLogo.astro"; 
+import ExpoLogo from "../../public/icons/ExpoLogo.astro";
+import Habilidades from "../components/Habilidades.astro";
+import Gmail from "../../public/icons/Gmail.astro";
+---
+
+<Layout title="Alberto Aracil Millan">
+  <main class="main-conten">
+    <section class="h-screen animate-fade-up p-32" id="inicio">
+      <h1 class="text-left text-7xl font-extrabold text-[#fff] pt-40">
+        Hola soy <span></span>Alberto Aracil Millán, <br /><span
+          class="text-[#fff] font-normal text-7xl"
+          >un joven apasionado por la programación y el desarrollo de software.</span
+        >
+      </h1>
+      <div class="mt-7">
+        <button
+          class="bg-[#bfc4cf] hover:bg-[#6633ee] py-3 px-3 rounded-full inline-flex animate-bounce"
+          onclick="onHandleButtonClick('https://github.com/alarmi04?tab=repositories')"
+        >
+          <GitHubLogo class="size-6" />
+          <span class="ml-2 text-[#000]">GitHub</span>
+        </button>
+        <button
+          class="bg-[#bfc4cf] hover:bg-[#6633ee] py-3 px-3 rounded-full inline-flex ml-3 animate-bounce"
+          onclick="onHandleButtonClick('https://www.linkedin.com/in/alberto-aracil-millan-929070292/')"
+        >
+          <LinkeInLogo class="size-6" />
+          <span class="ml-2 text-[#000]">LinkedIn</span>
+        </button>
+      </div>
+    </section>
+    <section
+      class="w-full mt-20 h-screen bg-[#15151F]"
+      style="scroll-margin-top: 5rem;"
+      id="formacion"
+    >
+      <div
+        class="intersect:animate-slide-in-left opacity-0 bg-white shadow-lg mb-20 p-10 w-full"
+      >
+        <h2
+          class="flex justify-center items-center text-6xl md:text-8xl font-extrabold gap-4 text-[#1E293B]"
+        >
+          <Briefcase class="size-24" />
+          Formación
+        </h2>
+      </div>
+      <div class="grid grid-cols-[1fr_auto_1fr]">
+        <div class="mx-auto">
+          <Experiencia />
+        </div>
+        <div class="h-120 w-px bg-gray-300 mx-auto"></div>
+        <div class="mx-auto">
+          <Habilidades />
+        </div>
+      </div>
+    </section>
+
+    <section
+      aria-label="Mis proyectos"
+      id="proyectos"
+      class="w-full bg-[#15151F] pb-10"
+      style="scroll-margin-top: 5rem;"
+    >
+      <div
+        class="intersect:animate-slide-in-left opacity-0 bg-white mb-20 p-10 w-full"
+      >
+        <h2
+          class="text-center text-6xl md:text-8xl font-extrabold text-[#1E293B]"
+        >
+          Mis proyectos
+        </h2>
+      </div>
+      <div class="mx-auto align-center justify-center flex">
+        <div class="grid gap-6 md:grid-rows-2">
+          {
+            projects.map((project) => {
+              const { slug, data } = project;
+              const { title, authors, description, img, tech, url } = data;
+
+              return (
+                <article class="flex bg-white p-6 rounded-lg">
+                  <a
+                    href={url}
+                    class="mb-2 xl:mb-0 transition hover:scale-110"
+                    target="_blank"
+                  >
+                    <div class="w-72 aspect-square mr-5">
+                      <img
+                        src={`/${img}`}
+                        alt={title}
+                        class="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                  </a>
+                  <div class="flex flex-col justify-center duration-[1000ms] taos:opacity-0">
+                    <h2 class="mb-2 text-2xl font-bold leading-tight text-[#1E293B]">
+                      {title}
+                    </h2>
+                    <p class="mb-4 max-w-sm text-[#1E293B]">{description}</p>
+                    <span class="text-xs text-[#1E293B]">
+                      Autores del proyecto:{" "}
+                      {Array.isArray(authors) ? authors.join(", ") : authors}
+                    </span>
+                    <div class="flex flex-wrap gap-2">
+                      {tech.map((tech) => (
+                        <span class="bg-[#6633ee] text-white py-1 px-3 rounded-full text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#000]">
+                          {tech.name === "React Native" ? (
+                            <ReactLogo class="size-6" />
+                          ) : tech.name === "MongoDB" ? (
+                            <MongoDBLogo class="size-6" />
+                          ) : tech.name === "Java" ? (
+                            <JavaLogo class="size-6" />
+                          ) : tech.name === "Spring Boot" ? (
+                            <SpringLogo class="size-6" />
+                          ) : tech.name === "Expo" ? (
+                            <ExpoLogo class="size-6" />
+                          ) : tech.name === "Git" ? (
+                            <GitLogo class="size-6" />
+                          ) : (
+                            tech.name
+                          )}
+                          {tech.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script
+    defer
+    src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"
+  ></script>
+  <script is:inline>
+    function onHandleButtonClick(url) {
+      window.open(url, "_blank");
+    }
+  </script>
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+      window.location.hash = "";
+      window.scrollTo(0, 0);
+    });
+  </script>
+</Layout>
