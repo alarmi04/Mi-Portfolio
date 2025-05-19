@@ -34,23 +34,26 @@ const techIcons = {
 
 <Layout title="Alberto Aracil Millan">
   <main class="main-conten">
-    <section class="h-screen animate-fade-up p-32" id="inicio">
-      <h1 class="text-left text-7xl font-extrabold text-[#fff] pt-40">
-        Hola soy <span></span>Alberto Aracil Millán, <br /><span
-          class="text-[#fff] font-normal text-7xl"
-          >un joven apasionado por la programación y el desarrollo de software.</span
-        >
+    <section
+      class="h-screen animate-fade-up p-6 md:p-32 flex flex-col items-start justify-center"
+      id="inicio"
+    >
+      <h1 class="text-left text-3xl md:text-7xl font-extrabold text-[#fff]">
+        Hola soy <span></span>Alberto Aracil Millán, <br />
+        <span class="text-[#fff] font-normal text-2xl md:text-7xl">
+          un joven apasionado por la programación y el desarrollo de software.
+        </span>
       </h1>
-      <div class="mt-7">
+      <div class="mt-7 flex flex-row gap-4">
         <button
-          class="bg-[#bfc4cf] hover:bg-[#6633ee] py-3 px-3 rounded-full inline-flex animate-bounce"
+          class="bg-[#bfc4cf] hover:bg-[#6633ee] py-3 px-3 rounded-full inline-flex items-center justify-center animate-bounce"
           onclick="onHandleButtonClick('https://github.com/alarmi04?tab=repositories')"
         >
           <GitHubLogo class="size-6" />
           <span class="ml-2 text-[#000]">GitHub</span>
         </button>
         <button
-          class="bg-[#bfc4cf] hover:bg-[#6633ee] py-3 px-3 rounded-full inline-flex ml-3 animate-bounce"
+          class="bg-[#bfc4cf] hover:bg-[#6633ee] py-3 px-3 rounded-full inline-flex items-center justify-center animate-bounce"
           onclick="onHandleButtonClick('https://www.linkedin.com/in/alberto-aracil-millan-929070292/')"
         >
           <LinkeInLogo class="size-6" />
@@ -58,26 +61,27 @@ const techIcons = {
         </button>
       </div>
     </section>
+
     <section
-      class="w-full mt-20 h-screen bg-[#15151F]"
+      class="w-full mt-10 md:mt-20 min-h-screen bg-[#15151F]"
       style="scroll-margin-top: 5rem;"
       id="formacion"
     >
       <div
-        class="intersect:animate-slide-in-left opacity-0 bg-white shadow-lg mb-20 p-10 w-full"
+        class="intersect:animate-slide-in-left opacity-0 bg-white shadow-lg mb-10 md:mb-20 p-4 md:p-10 w-full"
       >
         <h2
-          class="flex justify-center items-center text-6xl md:text-8xl font-extrabold gap-4 text-[#1E293B]"
+          class="flex justify-center items-center text-3xl md:text-8xl font-extrabold gap-4 text-[#1E293B]"
         >
-          <Briefcase class="size-24" />
+          <Briefcase class="size-12 md:size-24" />
           Formación
         </h2>
       </div>
-      <div class="grid grid-cols-[1fr_auto_1fr]">
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr]">
         <div class="mx-auto">
           <Experiencia />
         </div>
-        <div class="h-120 w-px bg-gray-300 mx-auto"></div>
+        <div class="hidden md:block h-120 w-px bg-gray-300 mx-auto"></div>
         <div class="mx-auto">
           <Habilidades />
         </div>
@@ -91,18 +95,20 @@ const techIcons = {
       style="scroll-margin-top: 5rem;"
     >
       <div
-        class="intersect:animate-slide-in-left opacity-0 bg-white mb-20 p-10 w-full"
+        class="intersect:animate-slide-in-left opacity-0 bg-white mb-10 md:mb-20 p-4 md:p-10 w-full"
       >
         <h2
-          class="text-center text-6xl md:text-8xl font-extrabold text-[#1E293B]"
+          class="text-center text-3xl md:text-8xl font-extrabold text-[#1E293B]"
         >
           Mis proyectos
         </h2>
       </div>
-      <div class="mx-auto align-center justify-center flex">
-        <div class="grid gap-6 md:grid-cols-1">
+      <div class="mx-auto flex justify-center">
+        <div class="grid gap-6 grid-cols-1">
           <div class="flex start mb-4">
-            <h3 class="bg-[#1E293B] p-2 rounded-lg">MÁS RECIENTE</h3>
+            <h3 class="bg-[#1E293B] p-2 rounded-lg text-base md:text-lg">
+              MÁS RECIENTE
+            </h3>
           </div>
           {
             projects.map((project) => {
@@ -110,13 +116,13 @@ const techIcons = {
               const { title, authors, description, img, tech, url } = data;
 
               return (
-                <article class="flex bg-white p-6 rounded-lg">
+                <article class="flex flex-col md:flex-row bg-white p-4 md:p-6 rounded-lg">
                   <a
                     href={url}
                     class="mb-2 xl:mb-0 transition hover:scale-110"
                     target="_blank"
                   >
-                    <div class="w-72 aspect-square mr-5">
+                    <div class="w-full md:w-72 aspect-square mr-0 md:mr-5 mb-4 md:mb-0">
                       <img
                         src={`/${img}`}
                         alt={title}
@@ -125,7 +131,7 @@ const techIcons = {
                     </div>
                   </a>
                   <div class="flex flex-col justify-center duration-[1000ms] taos:opacity-0">
-                    <h2 class="mb-2 text-2xl font-bold leading-tight text-[#1E293B]">
+                    <h2 class="mb-2 text-xl md:text-2xl font-bold leading-tight text-[#1E293B]">
                       {title}
                     </h2>
                     <p class="mb-4 max-w-sm text-[#1E293B]">{description}</p>
@@ -138,14 +144,14 @@ const techIcons = {
                         if (t in techIcons) {
                           const Icon = techIcons[t as keyof typeof techIcons];
                           return (
-                            <span class="bg-[#1E293B] text-white py-1 px-3 rounded-lg text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#6633ee]">
-                              <Icon class="size-6" />
+                            <span class="bg-[#1E293B] text-white py-1 px-3 rounded-lg text-xs md:text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#6633ee]">
+                              <Icon class="size-5 md:size-6" />
                               {t}
                             </span>
                           );
                         }
                         return (
-                          <span class="bg-[#1E293B] text-white py-1 px-3 rounded-lg text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#6633ee]">
+                          <span class="bg-[#1E293B] text-white py-1 px-3 rounded-lg text-xs md:text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#6633ee]">
                             {t}
                           </span>
                         );
