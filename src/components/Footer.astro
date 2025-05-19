@@ -1,15 +1,21 @@
-<footer class="text-center p-6 mt-12 text-sm text-neutral-300">
-    <p class="flex flex-wrap gap-4 justify-center items-center">
-      <a href="https://astro.build" target="_blank">
-        <img
-          src="./tiny.svg"
-          alt="Built with Astro"
-          width="120"
-          height="20"
-          loading="lazy"
-          class="inline"
-        />
-      </a>
-      <a href="https://github.com/delucis/astro-badge" class="hover:text-white underline underline-offset-4"> Código en GitHub</a>
-    </p>
+---
+import Gmail from "../../public/icons/Gmail.astro";
+---
+
+<footer class="text-center my-12 text-sm text-neutral-300" id="contacto">
+<div class="flex flex-col items-center justify-center h-full">
+  <h3 class="text-2xl font-bold text-[#1E293B] mb-4">
+    ¿Quieres ponerte en contacto conmigo?
+  </h3>
+  <p class="text-lg text-[#1E293B] mb-4">
+    Puedes escribirme a través de mi correo electrónico:
+  </p>
+  <a
+    href="mailto:albertoaracilmillan@gmail.com"
+    class="flex items-center text-lg text-[#6633ee] font-semibold hover:underline"
+  >
+    <Gmail class="size-6 mr-2" />
+    albertoaracilmillan@gmail.com
+  </a>
+</div>
 </footer>
