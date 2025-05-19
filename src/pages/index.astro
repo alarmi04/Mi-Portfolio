@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-const projects = await getCollection("projects");
+const projects = (await getCollection("projects")).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
 import Experiencia from "../components/Experiencia.astro";
 import Briefcase from "../../public/icons/Briefcase.astro";
 import LinkeInLogo from "../../public/icons/LinkeInLogo.astro";
@@ -13,7 +15,21 @@ import SpringLogo from "../../public/icons/SpringLogo.astro";
 import GitLogo from "../../public/icons/GitLogo.astro";
 import ExpoLogo from "../../public/icons/ExpoLogo.astro";
 import Habilidades from "../components/Habilidades.astro";
-import Gmail from "../../public/icons/Gmail.astro";
+import AWSLogo from "../../public/icons/AWSLogo.astro";
+import CsharpLogo from "../../public/icons/CsharpLogo.astro";
+import MySQLLogo from "../../public/icons/MySQLLogo.astro";
+
+const techIcons = {
+  "React Native": ReactLogo,
+  MongoDB: MongoDBLogo,
+  Java: JavaLogo,
+  "Spring Boot": SpringLogo,
+  Expo: ExpoLogo,
+  Git: GitLogo,
+  AWS: AWSLogo,
+  Csharp: CsharpLogo,
+  MySQL: MySQLLogo,
+} as const;
 ---
 
 <Layout title="Alberto Aracil Millan">
@@ -84,10 +100,13 @@ import Gmail from "../../public/icons/Gmail.astro";
         </h2>
       </div>
       <div class="mx-auto align-center justify-center flex">
-        <div class="grid gap-6 md:grid-rows-2">
+        <div class="grid gap-6 md:grid-cols-1">
+          <div class="flex start mb-4">
+            <h3 class="bg-[#1E293B] p-2 rounded-lg">MÁS RECIENTE</h3>
+          </div>
           {
             projects.map((project) => {
-              const { slug, data } = project;
+              const { data } = project;
               const { title, authors, description, img, tech, url } = data;
 
               return (
@@ -115,26 +134,22 @@ import Gmail from "../../public/icons/Gmail.astro";
                       {Array.isArray(authors) ? authors.join(", ") : authors}
                     </span>
                     <div class="flex flex-wrap gap-2">
-                      {tech.map((tech) => (
-                        <span class="bg-[#6633ee] text-white py-1 px-3 rounded-full text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#000]">
-                          {tech.name === "React Native" ? (
-                            <ReactLogo class="size-6" />
-                          ) : tech.name === "MongoDB" ? (
-                            <MongoDBLogo class="size-6" />
-                          ) : tech.name === "Java" ? (
-                            <JavaLogo class="size-6" />
-                          ) : tech.name === "Spring Boot" ? (
-                            <SpringLogo class="size-6" />
-                          ) : tech.name === "Expo" ? (
-                            <ExpoLogo class="size-6" />
-                          ) : tech.name === "Git" ? (
-                            <GitLogo class="size-6" />
-                          ) : (
-                            tech.name
-                          )}
-                          {tech.name}
-                        </span>
-                      ))}
+                      {tech.map((t) => {
+                        if (t in techIcons) {
+                          const Icon = techIcons[t as keyof typeof techIcons];
+                          return (
+                            <span class="bg-[#1E293B] text-white py-1 px-3 rounded-lg text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#6633ee]">
+                              <Icon class="size-6" />
+                              {t}
+                            </span>
+                          );
+                        }
+                        return (
+                          <span class="bg-[#1E293B] text-white py-1 px-3 rounded-lg text-sm self-start flex items-center gap-1 mt-4 border-2 border-[#6633ee]">
+                            {t}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 </article>

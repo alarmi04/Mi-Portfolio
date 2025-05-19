@@ -3,7 +3,7 @@ import ReactLogo from "../../public/icons/ReactLogo.astro";
 import MongoDBLogo from "../../public/icons/MongoDBLogo.astro";
 import JavaLogo from "../../public/icons/JavaLogo.astro";
 import SpringLogo from "../../public/icons/SpringLogo.astro";
-import GitLogo from "../../public/icons/GitLogo.astro"; 
+import GitLogo from "../../public/icons/GitLogo.astro";
 import ExpoLogo from "../../public/icons/ExpoLogo.astro";
 import Html5Logo from "../../public/icons/Html5Logo.astro";
 import MySQLLogo from "../../public/icons/MySQLLogo.astro";
@@ -12,51 +12,37 @@ import PythonLogo from "../../public/icons/PythonLogo.astro";
 import TailwindCSSLogo from "../../public/icons/TailwindCSSLogo.astro";
 import CSsharpLogo from "../../public/icons/CsharpLogo.astro";
 import JavaScriptLogo from "../../public/icons/JavaScriptLogo.astro";
+import AWSLogo from "../../public/icons/AWSLogo.astro";
+
+const skills = [
+  { name: "React", icon: ReactLogo },
+  { name: "MongoDB", icon: MongoDBLogo },
+  { name: "Java", icon: JavaLogo },
+  { name: "Spring", icon: SpringLogo },
+  { name: "Git", icon: GitLogo },
+  { name: "Expo", icon: ExpoLogo },
+  { name: "HTML5", icon: Html5Logo },
+  { name: "MySQL", icon: MySQLLogo },
+  { name: "CSS", icon: CSSLogo },
+  { name: "TailwindCSS", icon: TailwindCSSLogo },
+  { name: "Python", icon: PythonLogo },
+  { name: "C#", icon: CSsharpLogo },
+  { name: "JavaScript", icon: JavaScriptLogo },
+  { name: "R", icon: null, img: "/icons/R_logo.png" },
+  { name: "AWS", icon: AWSLogo },
+];
 ---
 
-
-
-<div class="flex flex-wrap gap-10 w-5/6 mx-auto">    
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">   
-    <ReactLogo class="size-12"/>
+<div class="flex flex-wrap gap-10 w-5/6 mx-auto">
+  {skills.map((skill) => (
+    <div
+      class="w-20 h-20 align-center justify-center flex items-center bg-[#1E293B] rounded-full hover:bg-[#6633ee] hover:scale-110 transition duration-300 cursor-pointer"
+      title={skill.name}
+    >
+      {skill.icon
+        ? <skill.icon class="size-12" />
+        : <img src={skill.img} alt={skill.name} class="w-12 h-12 rounded-full" />
+      }
     </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <MongoDBLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <JavaLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <SpringLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <GitLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <ExpoLogo class="size-12"/>
-    </div>  
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <Html5Logo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <MySQLLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <CSSLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <TailwindCSSLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <PythonLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <CSsharpLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <JavaScriptLogo class="size-12"/>
-    </div>
-    <div class="w-20 h-20 align-center justify-center flex items-center bg-[#fff] rounded-full hover:bg-[#6633ee]">
-    <img src="/icons/R_logo.png" alt="R_Logo" class="w-12 h-12 rounded-full"/>
-    </div>
+  ))}
 </div>
