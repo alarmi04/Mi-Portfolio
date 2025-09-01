@@ -11,8 +11,6 @@ import CSSLogo from "../../public/icons/CSSLogo.astro";
 import PythonLogo from "../../public/icons/PythonLogo.astro";
 import TailwindCSSLogo from "../../public/icons/TailwindCSSLogo.astro";
 import CSsharpLogo from "../../public/icons/CsharpLogo.astro";
-import JavaScriptLogo from "../../public/icons/JavaScriptLogo.astro";
-import AWSLogo from "../../public/icons/AWSLogo.astro";
 
 const skills = [
   { name: "React", icon: ReactLogo },
@@ -27,9 +25,6 @@ const skills = [
   { name: "TailwindCSS", icon: TailwindCSSLogo },
   { name: "Python", icon: PythonLogo },
   { name: "C#", icon: CSsharpLogo },
-  { name: "JavaScript", icon: JavaScriptLogo },
-  { name: "R", icon: null, img: "/icons/R_logo.png" },
-  { name: "AWS", icon: AWSLogo },
 ];
 ---
 
@@ -39,10 +34,7 @@ const skills = [
       class="w-20 h-20 align-center justify-center flex items-center bg-[#1E293B] rounded-full hover:bg-[#6633ee] hover:scale-110 transition duration-300 cursor-pointer"
       title={skill.name}
     >
-      {skill.icon
-        ? <skill.icon class="size-12" />
-        : <img src={skill.img} alt={skill.name} class="w-12 h-12 rounded-full" />
-      }
+      <skill.icon class="size-12" />
     </div>
   ))}
 </div>
